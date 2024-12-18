@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book a Movie Ticket</title>
+    <!-- Link to Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Book a Movie Ticket</h1>
+        <form method="POST" class="mt-4">
+            {% csrf_token %}
+
+            <!-- Dropdown for Movie Titles -->
+            <div class="form-group">
+                <label for="movie" class="font-weight-bold">Select Movie:</label>
+                <select class="form-control border-primary" id="movie" name="movie" required>
+                    <option value="" disabled selected>Select a movie</option>
+                    {% for movie in movies %}
+                    <option value="{{ movie.id }}">{{ movie.title }} - ${{ movie.price }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Input for Seat Number -->
+            <div class="form-group">
+                <label for="seat" class="font-weight-bold">Enter Seat Number:</label>
+                <input type="text" class="form-control border-primary" id="seat" name="seat" required placeholder="E.g., A12">
+            </div>
+
+            <!-- Buttons -->
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-lg">Confirm Purchase</button>
+                <a href="{% url 'logout' %}" class="btn btn-danger btn-lg ml-3">Logout</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

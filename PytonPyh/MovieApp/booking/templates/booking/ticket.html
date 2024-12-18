@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ticket Details</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Ticket Details</h1>
+        <p><strong>Movie:</strong> {{ ticket.movie.title }}</p>
+        <p><strong>Genre:</strong> {{ ticket.movie.genre }}</p>
+        <p><strong>Year:</strong> {{ ticket.movie.release_year }}</p>
+        <p><strong>Price:</strong> ${{ ticket.movie.price }}</p>
+        <p><strong>Date:</strong> {{ ticket.date }}</p>
+        <p><strong>Seat:</strong> {{ ticket.seat }}</p>
+        <div class="mt-4">
+            <h3>QR Code:</h3>
+            <img src="{{ ticket.qr_code.url }}" alt="QR Code" class="img-fluid">
+        </div>
+    </div>
+</body>
+</html>
